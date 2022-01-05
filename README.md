@@ -14,6 +14,8 @@ Zim が出力した HTML ファイルをLine Works 掲示板で表示できる�
 ### インストール ###
 
 ```
+npm install
+sed -i '1 a const {TextDecoder, TextEncoder} = require("util");'  node_modules/whatwg-url/lib/encoding.js
 bash ./install.sh
 ```
 

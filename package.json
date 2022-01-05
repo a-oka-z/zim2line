@@ -1,0 +1,23 @@
+{
+  "name": "zim2line",
+  "version": "0.0.1",
+  "description": "Convert the specified HTML file to a LineWorks aware HTML file.",
+  "main": "index.js",
+  "dependencies": {
+    "jsdom": "^19.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-oka-z/zim2line.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a-oka-z/zim2line/issues"
+  },
+  "homepage": "https://github.com/a-oka-z/zim2line#readme"
+}
