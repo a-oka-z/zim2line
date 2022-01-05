@@ -1,0 +1,67 @@
+#!/usr/bin/nodejs
+
+const jsdom = require( "jsdom" );
+const { JSDOM } = jsdom;
+const { readFileSync } = require( 'fs' );
+
+function STYLE_UL() {
+    return `style="font-size:0.75rem;margin:0.2rem;border:0.1rem solid silver; margin:0.5rem; padding:1rem; border-radius:0.5rem; list-style-type: disc;"`
+}
+function STYLE_LI(level) {
+    return `style="margin-left:${(level-1) *1 }rem"`;
+}
+
+/* 
+ * ReferenceError: TextEncoder is not defined
+ * https://stackoverflow.com/questions/19697858/referenceerror-textencoder-is-not-defined
+ */
+
+function html2tocProc( htmlString )  {
+    const dom = new JSDOM( htmlString  , { runScripts: "dangerously" });
+
+    for ( let i=0; i<7; i++ ) {
+        let e = dom.window.document.getElementsByTagName( `h${i}` );
+        for ( let j=0; j<e.length; j++ ) {
+            e[j].classList.add( "hello" );
+        }
+    }
+
+    let result  = `<div ${STYLE_UL()}><span style="font-weight:bolder; font-size:1.2rem">目次</span><br/>\n`;
+    result += ( `<ul style="margin:0rem;padding:0.2rem;">\n` );
+    {
+        let e = dom.window.document.getElementsByClassName( `hello` );
+        for ( let i=0; i<e.length; i++ ) {
+            ee=e[i];
+            let level = parseInt( ee.nodeName.replace( /([^0-9]+)/g,'' ), 10 );
+            if ( isNaN( level ) ) 
+                throw `${ ee.nodeName } is not a number! `;
+
+            result += ( `<li ${STYLE_LI( level )}>${ ee.textContent.trim() }</li>\n` );
+        }
+    }
+    result += ( `</ul>\n` );
+    return result; 
+
+}
+
+function replaceTagContent( htmlString, replaceString, elementID ) { 
+    const dom = new JSDOM( htmlString  , { runScripts: "dangerously" });
+    let e = dom.window.document.getElementById( elementID );
+    if ( e !== null ) {
+        // console.log( `<!-- the specified string content is  ''${ replaceString }'' . -->` )
+        e.outerHTML = `<div id="${elementID}">${ replaceString }</div>`;
+    } else { 
+        console.error( `<!-- ERROR the specified tag ${elementID} was not found. -->` )
+        return htmlString;
+    }
+    return dom.serialize();
+}
+
+{
+    const htmlString  = readFileSync( process.stdin.fd, "utf-8" );
+    const tocString = html2tocProc( htmlString );
+    console.log( replaceTagContent( htmlString, tocString, "zim-toc" ) );
+}
+
+
+// vim: filetype=javascript :
