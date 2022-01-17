@@ -18,7 +18,7 @@ function! AtsZim2Line()
   call AtsProcessPre()
   normal :%s/<p>/<p style="font-size:1.00rem; padding-bottom:1rem;">/g
   normal :%s/<pre>/<pre style="border-radius:0.1rem;background-color:#000000;color:#00FF00;overflow-x:scroll;padding:1rem;">/g
-  normal :%s/<h1>/<h1 style="border-bottom:0.00rem none   black; border-radius: 1.0rem; padding:1.00rem; font-size:2.500rem; background-color: burlywood;font-weight:bold; margin: 1rem; box-shadow: 0.5rem 0.5rem black; ">/g
+  normal :%s/<h1>/<h1 style="border-bottom:0.00rem none   black; border-radius: 1.0rem; padding:1.00rem; font-size:2.500rem; background-color: burlywood;font-weight:bold; margin: 1rem; box-shadow: 0.5rem 0.5rem black; background-image: linear-gradient(315deg, #FC00FF 0%, #00DBDE 100%);">/g
   normal :%s/<h2>/<h2 style="border-bottom:0.25rem double black; border-radius: 0.2rem; padding:1.00rem; font-size:1.750rem; background-color: #ffdaab;  font-weight:bold; margin-bottom:1rem; ">/g
   normal :%s/<h3>/<h3 style="border-bottom:0.25rem double black; border-radius: 0.2rem; padding:0.50rem; font-size:1.500rem; background-color: #eeeeee;  font-weight:bold; margin-bottom:0.5rem; ">/g
   normal :%s/<h4>/<h4 style="border-bottom:0.10rem dotted black; border-radius: 0.2rem; padding:0.50rem; font-size:1.000rem; background-color: #eeeeee;  font-weight:bold;">/g
