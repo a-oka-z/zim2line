@@ -15,7 +15,7 @@ function! AtsZim2Line()
 
   " return 0
 
-  call AtsProcessPre()
+  " call AtsProcessPre()
   normal :%s/<p>/<p style="font-size:1.00em; padding-bottom:1em;">/g
   normal :%s/<pre>/<pre style="border-radius:0.1em;background-color:#000000;color:#00FF00;overflow-x:scroll;padding:1em;">/g
   normal :%s/<h1>/<h1 style="                                   border-radius: 1.0em; padding:1.00em; font-size:2.500em; background-color: burlywood;font-weight:bold; margin: 1em;        box-shadow: 0.5em 0.5em black; background-image: linear-gradient(315deg, #FC00FF 0%, #00DBDE 100%);color:WHITE;  text-shadow: 0px 0px 32px rgba(255,255,255,1); transform: rotate(-1.0deg);">/g
