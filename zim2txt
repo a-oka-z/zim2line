@@ -1,9 +1,10 @@
 #!/bin/bash
 
+    xsel -o -b | \
     sed 's/   /　　/g' | \
     sed 's/\[ \] */☐ /g' | \
     sed 's/\[ *\* *\] /☑ /g' | \
     sed 's/\[ *\x *\] /☒ /g' | \
     sed 's/\[ *> *\] */▷ /g' | \
     sed 's/\[ *< *\] */◀ /g' | \
-    cat 
+    xsel -i -b 
