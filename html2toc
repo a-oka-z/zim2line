@@ -1,4 +1,4 @@
-#!/usr/bin/nodejs
+#!/bin/env node
 
 const jsdom = require( "jsdom" );
 const { JSDOM } = jsdom;
@@ -11,7 +11,7 @@ function STYLE_LI(level) {
     return `style="margin-left:${(level-1) *1 }em"`;
 }
 
-/* 
+/*
  * ReferenceError: TextEncoder is not defined
  * https://stackoverflow.com/questions/19697858/referenceerror-textencoder-is-not-defined
  */
@@ -33,24 +33,24 @@ function html2tocProc( htmlString )  {
         for ( let i=0; i<e.length; i++ ) {
             ee=e[i];
             let level = parseInt( ee.nodeName.replace( /([^0-9]+)/g,'' ), 10 );
-            if ( isNaN( level ) ) 
+            if ( isNaN( level ) )
                 throw `${ ee.nodeName } is not a number! `;
 
             result += ( `<li ${STYLE_LI( level )}>${ ee.textContent.trim() }</li>\n` );
         }
     }
     result += ( `</ul>\n` );
-    return result; 
+    return result;
 
 }
 
-function replaceTagContent( htmlString, replaceString, elementID ) { 
+function replaceTagContent( htmlString, replaceString, elementID ) {
     const dom = new JSDOM( htmlString  , { runScripts: "dangerously" });
     let e = dom.window.document.getElementById( elementID );
     if ( e !== null ) {
         // console.log( `<!-- the specified string content is  ''${ replaceString }'' . -->` )
         e.outerHTML = `<div id="${elementID}">${ replaceString }</div>`;
-    } else { 
+    } else {
         console.error( `<!-- ERROR the specified tag ${elementID} was not found. -->` )
         return htmlString;
     }
