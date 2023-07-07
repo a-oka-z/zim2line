@@ -40,6 +40,7 @@ function! AtsZim2Line()
   normal gg
   normal /<h1\>
   normal kVk0w%k"+y
+  execute "! xsel -b -o | minify --type html | xsel -b -i"
 endfunction
 
 function! AtsCountWord( word )
