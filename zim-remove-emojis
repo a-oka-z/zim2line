@@ -1,0 +1,10 @@
+#!/bin/bash
+
+DIRNAME=`realpath "$BASH_SOURCE"`
+DIRNAME=`dirname "$DIRNAME"`
+
+  xsel -o -b | \
+  echo "$DIRNAME/zim-remove-emojis.js" | \
+  xsel -i -b
+
+
