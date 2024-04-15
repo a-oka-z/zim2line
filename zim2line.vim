@@ -1,5 +1,6 @@
 
 
+
 " https://stackoverflow.com/questions/4976776/how-to-get-path-to-the-current-vimscript-being-executed
 " let g:zim2line_file = resolve(expand('<sfile>:p'))
 " let g:zim2line_file = fnamemodify(resolve(expand('<sfile>:p')), ':h')
@@ -10,6 +11,8 @@ let g:zim2toc_file =  g:zim2line_file . "/html2toc"
 " https://vi.stackexchange.com/questions/9644/how-to-use-a-variable-in-the-expression-of-a-normal-command
 
 function! AtsZim2Line()
+  MatchEnable
+
   " echo g:zim2line_file . "/html2toc"
   execute "% ! " .  g:zim2toc_file
 
